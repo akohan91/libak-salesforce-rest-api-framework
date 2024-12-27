@@ -25,7 +25,7 @@ public abstract class libak_RestRouter {
 	 * @return A new `libak_RestProcessor` instance configured to handle the specified REST request with custom error handling and logging.
 	 * @throws libak_RestFramework.InvalidUriException If the requested URI does not match any defined routes.
 	 */
-	public libak_RestProcessor newRestProcessor(RestRequest request, libak_RestFramework.IErrorResponseFactory errorResponseFactory, libak_RestFramework.IRestLogger restLogger) {
+	public libak_RestProcessor newRestProcessor(RestRequest request, libak_IErrorResponseFactory errorResponseFactory, libak_IRestLogger restLogger) {
 		List<String> sortedRoutes = new List<String>(this.routeToRestProcessorType.keySet());
 		sortedRoutes.sort();
 		while (sortedRoutes.size() > 0) {

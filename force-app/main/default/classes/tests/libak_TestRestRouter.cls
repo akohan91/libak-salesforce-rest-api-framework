@@ -80,14 +80,14 @@ public with sharing class libak_TestRestRouter {
 		}
 	}
 
-	private class TestRestLogger implements libak_RestFramework.IRestLogger {
+	private class TestRestLogger implements libak_IRestLogger {
 		public void initLog(RestRequest request) {}
 		public void addErrorDetails(Exception exc) {}
 		public void createLog() {}
 	}
 
-	private class libak_TestErrorResponseFactory implements libak_RestFramework.IErrorResponseFactory {
-		public libak_RestFramework.IRestResponse newErrorRestResponse(Exception exc) {
+	private class libak_TestErrorResponseFactory implements libak_IErrorResponseFactory {
+		public libak_IRestResponse newErrorRestResponse(Exception exc) {
 			return null;
 		}
 	}

@@ -3,12 +3,12 @@ public with sharing class libak_TestErrorResponseFactory {
 	@IsTest
 	static void testCustomException(){
 		RestContext.response = new RestResponse();
-		libak_RestFramework.IErrorResponseFactory responseFactory = new libak_ErrorResponseFactory();
+		libak_IErrorResponseFactory responseFactory = new libak_ErrorResponseFactory();
 		Exception exc = new libak_RestFramework.MethodNotAllowedException('Error message');
 
 		Test.startTest();
 
-		libak_RestFramework.IRestResponse response = responseFactory.newErrorRestResponse(exc);
+		libak_IRestResponse response = responseFactory.newErrorRestResponse(exc);
 		response.sendResponse();
 
 		Test.stopTest();
@@ -37,12 +37,12 @@ public with sharing class libak_TestErrorResponseFactory {
 	@IsTest
 	static void testUnexpectedException(){
 		RestContext.response = new RestResponse();
-		libak_RestFramework.IErrorResponseFactory responseFactory = new libak_ErrorResponseFactory();
+		libak_IErrorResponseFactory responseFactory = new libak_ErrorResponseFactory();
 		Exception exc = new TestUnexpectedException('Error message');
 
 		Test.startTest();
 
-		libak_RestFramework.IRestResponse response = responseFactory.newErrorRestResponse(exc);
+		libak_IRestResponse response = responseFactory.newErrorRestResponse(exc);
 		response.sendResponse();
 
 		Test.stopTest();
