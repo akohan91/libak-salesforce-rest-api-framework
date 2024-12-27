@@ -4,7 +4,7 @@ public with sharing class libak_TestErrorResponse {
 	@IsTest
 	static void testErrorResponseInstance(){
 		RestContext.response = new RestResponse();
-		libak_RestFramework.IRestResponse response = new libak_ErrorResponse(
+		libak_IRestResponse response = new libak_ErrorResponse(
 			libak_RestFramework.HTTP_CODE_BAD_REQUEST,
 			new libak_RestFramework.InvalidUriException('Bad Request')
 		);

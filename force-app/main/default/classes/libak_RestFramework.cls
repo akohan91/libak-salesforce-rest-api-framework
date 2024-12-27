@@ -50,12 +50,12 @@ public class libak_RestFramework {
 	 * @param errorResponseFactoryType The type of the error response factory to use for creating error responses (optional, can be null).
 	 */
 	public static void handleRequest(Type routerType, Type loggerType, Type errorResponseFactoryType) {
-		IRestResponse response;
-		IErrorResponseFactory errorResponseFactory;
-		IRestLogger restLogger;
+		libak_IRestResponse response;
+		libak_IErrorResponseFactory errorResponseFactory;
+		libak_IRestLogger restLogger;
 		try {
-			errorResponseFactory = (IErrorResponseFactory)errorResponseFactoryType?.newInstance();
-			restLogger = (IRestLogger)loggerType?.newInstance();
+			errorResponseFactory = (libak_IErrorResponseFactory)errorResponseFactoryType?.newInstance();
+			restLogger = (libak_IRestLogger)loggerType?.newInstance();
 			restLogger?.initLog(RestContext.request);
 			libak_RestRouter router = ((libak_RestRouter)routerType.newInstance()).setRoutes();
 			libak_RestProcessor processor = router
@@ -68,29 +68,6 @@ public class libak_RestFramework {
 			response.sendResponse();
 			restLogger?.createLog();
 		}
-	}
-
-	/**
-	 * The `IRestResponse` interface defines a method for sending REST responses.
-	 */
-	public interface IRestResponse {
-		void sendResponse();
-	}
-
-	/**
-	 * The `IErrorResponseFactory` interface defines a method for creating error responses.
-	 */
-	public interface IErrorResponseFactory {
-		IRestResponse newErrorRestResponse(Exception exc);
-	}
-
-	/**
-	 * The `IRestLogger` interface defines methods for logging REST-related information.
-	 */
-	public interface IRestLogger {
-		void initLog(RestRequest request);
-		void addErrorDetails(Exception exc);
-		void createLog();
 	}
 
 	/**

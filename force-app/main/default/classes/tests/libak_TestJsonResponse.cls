@@ -9,7 +9,7 @@ public with sharing class libak_TestJsonResponse {
 	static void testConstructorStringData(){
 		RestContext.response = new RestResponse();
 		String stringResponseData = JSON.serialize(TEST_RESPONSE_DATA);
-		libak_RestFramework.IRestResponse response = new libak_JsonResponse(stringResponseData);
+		libak_IRestResponse response = new libak_JsonResponse(stringResponseData);
 
 		Test.startTest();
 
@@ -41,7 +41,7 @@ public with sharing class libak_TestJsonResponse {
 	@IsTest
 	static void testConstructorObjectData(){
 		RestContext.response = new RestResponse();
-		libak_RestFramework.IRestResponse response = new libak_JsonResponse(TEST_RESPONSE_DATA);
+		libak_IRestResponse response = new libak_JsonResponse(TEST_RESPONSE_DATA);
 
 		Test.startTest();
 
@@ -75,7 +75,7 @@ public with sharing class libak_TestJsonResponse {
 	static void testConstructorStatusCodeAndStringData(){
 		RestContext.response = new RestResponse();
 		String stringResponseData = JSON.serialize(TEST_RESPONSE_DATA);
-		libak_RestFramework.IRestResponse response = new libak_JsonResponse(libak_RestFramework.HTTP_CODE_BAD_REQUEST, stringResponseData);
+		libak_IRestResponse response = new libak_JsonResponse(libak_RestFramework.HTTP_CODE_BAD_REQUEST, stringResponseData);
 
 		Test.startTest();
 
@@ -107,7 +107,7 @@ public with sharing class libak_TestJsonResponse {
 	@IsTest
 	static void testConstructorStatusCodeAndObjectData(){
 		RestContext.response = new RestResponse();
-		libak_RestFramework.IRestResponse response = new libak_JsonResponse(libak_RestFramework.HTTP_CODE_BAD_REQUEST, TEST_RESPONSE_DATA);
+		libak_IRestResponse response = new libak_JsonResponse(libak_RestFramework.HTTP_CODE_BAD_REQUEST, TEST_RESPONSE_DATA);
 
 		Test.startTest();
 
@@ -140,7 +140,7 @@ public with sharing class libak_TestJsonResponse {
 	@IsTest
 	static void testSendResponse(){
 		RestContext.response = new RestResponse();
-		libak_RestFramework.IRestResponse response = new libak_JsonResponse(TEST_RESPONSE_DATA);
+		libak_IRestResponse response = new libak_JsonResponse(TEST_RESPONSE_DATA);
 
 		Test.startTest();
 

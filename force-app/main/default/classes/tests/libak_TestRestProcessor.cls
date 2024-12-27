@@ -98,7 +98,7 @@ public with sharing class libak_TestRestProcessor {
 
 		Test.startTest();
 
-		libak_RestFramework.IRestResponse response = processor.process();
+		libak_IRestResponse response = processor.process();
 		response.sendResponse();
 
 		Test.stopTest();
