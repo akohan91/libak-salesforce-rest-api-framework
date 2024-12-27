@@ -1,7 +1,7 @@
 /**
  * The `libak_RestProcessor` class serves as the base class for implementing specific REST processors.
  * It includes methods for handling different HTTP methods, parsing URI parameters, and managing errors.
- * @return   {libak_RestFramework.IRestResponse}
+ * @return   {libak_IRestResponse}
  */
 public virtual class libak_RestProcessor {
 	@TestVisible
@@ -11,9 +11,9 @@ public virtual class libak_RestProcessor {
 	@TestVisible
 	private Map<String, String> uriParamsMap;
 	@TestVisible
-	private libak_RestFramework.IErrorResponseFactory errorResponseFactory;
+	private libak_IErrorResponseFactory errorResponseFactory;
 	@TestVisible
-	private libak_RestFramework.IRestLogger restLogger;
+	private libak_IRestLogger restLogger;
 
 	/**
 	 * Processes the incoming REST request by handling different HTTP methods and managing errors.
@@ -22,10 +22,10 @@ public virtual class libak_RestProcessor {
 	 * to the appropriate handler based on the HTTP method (GET, POST, PUT, PATCH, DELETE). If an unsupported
 	 * HTTP method is received, it throws a libak_RestFramework.MethodNotAllowedException.
 	 *
-	 * @return An instance of libak_RestFramework.IRestResponse representing the response to the REST request.
+	 * @return An instance of libak_IRestResponse representing the response to the REST request.
 	 * @throws libak_RestFramework.MethodNotAllowedException If the incoming HTTP method is not supported for this resource.
 	 */
-	public libak_RestFramework.IRestResponse process() {
+	public libak_IRestResponse process() {
 		try {
 			switch on(String) this.request.httpMethod {
 				when 'GET' {
@@ -85,7 +85,7 @@ public virtual class libak_RestProcessor {
 	 * @param errorResponseFactory The error response factory to use.
 	 * @return The current `libak_RestProcessor` instance.
 	 */
-	public libak_RestProcessor useErrorResponseFactory(libak_RestFramework.IErrorResponseFactory errorResponseFactory) {
+	public libak_RestProcessor useErrorResponseFactory(libak_IErrorResponseFactory errorResponseFactory) {
 		this.errorResponseFactory = errorResponseFactory;
 		return this;
 	}
@@ -96,7 +96,7 @@ public virtual class libak_RestProcessor {
 	 * @param restLogger The REST logger to use.
 	 * @return The current `libak_RestProcessor` instance.
 	 */
-	public libak_RestProcessor useRestLogger(libak_RestFramework.IRestLogger restLogger) {
+	public libak_RestProcessor useRestLogger(libak_IRestLogger restLogger) {
 		this.restLogger = restLogger;
 		return this;
 	}
@@ -110,9 +110,9 @@ public virtual class libak_RestProcessor {
 	 * If this method is called without being overridden in a subclass, it will throw a libak_RestFramework.MethodNotAllowedException
 	 * indicating that the GET method is not supported for this resource.
 	 *
-	 * @return An instance of libak_RestFramework.IRestResponse representing the response to the GET request.
+	 * @return An instance of libak_IRestResponse representing the response to the GET request.
 	 */
-	protected virtual libak_RestFramework.IRestResponse handleGet() {
+	protected virtual libak_IRestResponse handleGet() {
 		this.throwMethodNotAllowedException();
 		return null;
 	}
@@ -124,9 +124,9 @@ public virtual class libak_RestProcessor {
 	 * If this method is called without being overridden in a subclass, it will throw a libak_RestFramework.MethodNotAllowedException
 	 * indicating that the POST method is not supported for this resource.
 	 *
-	 * @return An instance of libak_RestFramework.IRestResponse representing the response to the POST request.
+	 * @return An instance of libak_IRestResponse representing the response to the POST request.
 	 */
-	protected virtual libak_RestFramework.IRestResponse handlePost() {
+	protected virtual libak_IRestResponse handlePost() {
 		this.throwMethodNotAllowedException();
 		return null;
 	}
@@ -138,9 +138,9 @@ public virtual class libak_RestProcessor {
 	 * If this method is called without being overridden in a subclass, it will throw a libak_RestFramework.MethodNotAllowedException
 	 * indicating that the PUT method is not supported for this resource.
 	 *
-	 * @return An instance of libak_RestFramework.IRestResponse representing the response to the PUT request.
+	 * @return An instance of libak_IRestResponse representing the response to the PUT request.
 	 */
-	protected virtual libak_RestFramework.IRestResponse handlePut() {
+	protected virtual libak_IRestResponse handlePut() {
 		this.throwMethodNotAllowedException();
 		return null;
 	}
@@ -152,9 +152,9 @@ public virtual class libak_RestProcessor {
 	 * If this method is called without being overridden in a subclass, it will throw a libak_RestFramework.MethodNotAllowedException
 	 * indicating that the PATCH method is not supported for this resource.
 	 *
-	 * @return An instance of libak_RestFramework.IRestResponse representing the response to the PATCH request.
+	 * @return An instance of libak_IRestResponse representing the response to the PATCH request.
 	 */
-	protected virtual libak_RestFramework.IRestResponse handlePatch() {
+	protected virtual libak_IRestResponse handlePatch() {
 		this.throwMethodNotAllowedException();
 		return null;
 	}
@@ -166,9 +166,9 @@ public virtual class libak_RestProcessor {
 	 * If this method is called without being overridden in a subclass, it will throw a libak_RestFramework.MethodNotAllowedException
 	 * indicating that the DELETE method is not supported for this resource.
 	 *
-	 * @return An instance of libak_RestFramework.IRestResponse representing the response to the DELETE request.
+	 * @return An instance of libak_IRestResponse representing the response to the DELETE request.
 	 */
-	protected virtual libak_RestFramework.IRestResponse handleDelete() {
+	protected virtual libak_IRestResponse handleDelete() {
 		this.throwMethodNotAllowedException();
 		return null;
 	}

@@ -28,7 +28,7 @@ global with sharing class CustomerWebServiceDemo {
 	}
 
 	public class CustomersProcessorV1 extends libak_RestProcessor {
-		protected override libak_RestFramework.IRestResponse handleGet() {
+		protected override libak_IRestResponse handleGet() {
 			List<Account> accounts = [
 				SELECT Id, Name, Phone, BillingStreet, BillingCity, BillingState, BillingPostalCode
 				FROM Account
@@ -42,7 +42,7 @@ global with sharing class CustomerWebServiceDemo {
 			}
 		}
 
-		protected override libak_RestFramework.IRestResponse handlePost() {
+		protected override libak_IRestResponse handlePost() {
 			Account newAccount = (Account)JSON.deserialize(this.request.requestBody.toString(), Account.class);
 			insert newAccount;
 
@@ -51,7 +51,7 @@ global with sharing class CustomerWebServiceDemo {
 	}
 
 	public class CustomerProcessorV1 extends libak_RestProcessor {
-		protected override libak_RestFramework.IRestResponse handleGet() {
+		protected override libak_IRestResponse handleGet() {
 			List<Account> accounts = [
 				SELECT Id, Name, Phone, BillingStreet, BillingCity, BillingState, BillingPostalCode
 				FROM Account
@@ -65,7 +65,7 @@ global with sharing class CustomerWebServiceDemo {
 			}
 		}
 
-		protected override libak_RestFramework.IRestResponse handlePut() {
+		protected override libak_IRestResponse handlePut() {
 			String accountId = this.getUriParam('customer_sf_id');
 			List<Account> existingAccounts = [SELECT Id FROM Account WHERE Id = :accountId];
 
@@ -79,7 +79,7 @@ global with sharing class CustomerWebServiceDemo {
 			return new libak_JsonResponse(updatedAccount);
 		}
 
-		protected override libak_RestFramework.IRestResponse handleDelete() {
+		protected override libak_IRestResponse handleDelete() {
 			String accountId = this.getUriParam('customer_sf_id');
 			List<Account> existingAccounts = [SELECT Id FROM Account WHERE Id = :accountId];
 

@@ -2,7 +2,7 @@
  * The `libak_SuccessResponse` class represents a successful REST response. It allows developers to construct
  * responses with custom data, status codes, and headers.
  */
-public virtual class libak_SuccessResponse implements libak_RestFramework.IRestResponse {
+public virtual class libak_SuccessResponse implements libak_IRestResponse {
 	protected Map<String, String> headers = new Map<String, String>();
 	protected Integer statusCode;
 	protected Blob data;

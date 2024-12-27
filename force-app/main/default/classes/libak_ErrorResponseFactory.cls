@@ -2,7 +2,7 @@
  * The `libak_ErrorResponseFactory` class is responsible for creating error responses based on exceptions.
  * It maps exception types to appropriate HTTP status codes and error messages.
  */
-public class libak_ErrorResponseFactory implements libak_RestFramework.IErrorResponseFactory {
+public class libak_ErrorResponseFactory implements libak_IErrorResponseFactory {
 	private Map<String, Integer> httpStatusByErrorType = new Map<String, Integer>{
 		libak_RestFramework.InvalidUriException.class.getName() => libak_RestFramework.HTTP_CODE_BAD_REQUEST,
 		libak_RestFramework.MethodNotAllowedException.class.getName() => libak_RestFramework.HTTP_CODE_METHOD_NOT_ALLOWED
@@ -14,7 +14,7 @@ public class libak_ErrorResponseFactory implements libak_RestFramework.IErrorRes
 	 * @param exc The exception for which to create an error response.
 	 * @return An error response based on the exception.
 	 */
-	public libak_RestFramework.IRestResponse newErrorRestResponse(Exception exc) {
+	public libak_IRestResponse newErrorRestResponse(Exception exc) {
 		Integer statusCode = this.httpStatusByErrorType.get(exc.getTypeName());
 		return statusCode != null
 			? new libak_ErrorResponse(statusCode, exc)

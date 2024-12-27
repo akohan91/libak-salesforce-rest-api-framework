@@ -2,7 +2,7 @@
  * The `libak_ErrorResponse` class represents an error REST response. It allows developers to construct
  * responses with custom error messages, status codes, and details.
  */
-public class libak_ErrorResponse implements libak_RestFramework.IRestResponse {
+public class libak_ErrorResponse implements libak_IRestResponse {
 	@TestVisible
 	private Integer statusCode;
 	@TestVisible
