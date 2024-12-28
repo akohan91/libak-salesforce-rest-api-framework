@@ -5,9 +5,9 @@
   - [Content Types](#content-types)
   - [Error Messages](#error-messages)
 - [`Interfaces`](#interfaces)
-  - [libak_RestFramework.IRestResponse](#restframeworkirestresponse)
-  - [libak_RestFramework.IErrorResponseFactory](#restframeworkierrorresponsefactory)
-  - [libak_RestFramework.IRestLogger](#restframeworkirestlogger)
+  - [libak_IRestResponse](#restframeworkirestresponse)
+  - [libak_IErrorResponseFactory](#restframeworkierrorresponsefactory)
+  - [libak_IRestLogger](#restframeworkirestlogger)
 - [`Public static methods`](#public-static-methods)
     - [`handleRequest(Type routerType)`](#handlerequesttype-routertype)
     - [`handleRequest(Type routerType, Type loggerType)`](#handlerequesttype-routertype-type-loggertype)
@@ -19,8 +19,8 @@
     - [`process()`](#process)
     - [`useUriTemplate(String uriTemplate)`](#useuritemplatestring-uritemplate)
     - [`useRestRequest(RestRequest request)`](#userestrequestrestrequest-request)
-    - [`useErrorResponseFactory(libak_RestFramework.IErrorResponseFactory errorResponseFactory)`](#useerrorresponsefactoryrestframeworkierrorresponsefactory-errorresponsefactory)
-    - [`useRestLogger(libak_RestFramework.IRestLogger restLogger)`](#userestloggerrestframeworkirestlogger-restlogger)
+    - [`useErrorResponseFactory(libak_IErrorResponseFactory errorResponseFactory)`](#useerrorresponsefactoryrestframeworkierrorresponsefactory-errorresponsefactory)
+    - [`useRestLogger(libak_IRestLogger restLogger)`](#userestloggerrestframeworkirestlogger-restlogger)
   - [Virtual Methods](#virtual-methods)
     - [`handleGet()`](#handleget)
     - [`handlePost()`](#handlepost)
@@ -38,7 +38,7 @@
   - [Abstract methods](#abstract-methods)
     - [`setRoutes()`](#setroutes)
   - [Public methods](#public-methods-1)
-    - [`newRestProcessor(RestRequest request, libak_RestFramework.IErrorResponseFactory errorResponseFactory, libak_RestFramework.IRestLogger restLogger)`](#newrestprocessorrestrequest-request-restframeworkierrorresponsefactory-errorresponsefactory-restframeworkirestlogger-restlogger)
+    - [`newRestProcessor(RestRequest request, libak_IErrorResponseFactory errorResponseFactory, libak_IRestLogger restLogger)`](#newrestprocessorrestrequest-request-restframeworkierrorresponsefactory-errorresponsefactory-restframeworkirestlogger-restlogger)
   - [Private Methods](#private-methods-1)
     - [`isRouteExists(String route, String requestURI)`](#isrouteexistsstring-route-string-requesturi)
 - [`libak_ErrorResponseFactory class`](#errorresponsefactory-class)
@@ -106,21 +106,21 @@ The `libak_RestFramework` class provides a structured framework for building RES
 
 ## `Interfaces`
 
-### libak_RestFramework.IRestResponse
+### libak_IRestResponse
 
-The `libak_RestFramework.IRestResponse` interface defines a method for sending REST responses.
+The `libak_IRestResponse` interface defines a method for sending REST responses.
 
 - `sendResponse(): void`: Sends the REST response.
 
-### libak_RestFramework.IErrorResponseFactory
+### libak_IErrorResponseFactory
 
-The `libak_RestFramework.IErrorResponseFactory` interface defines a method for creating error responses.
+The `libak_IErrorResponseFactory` interface defines a method for creating error responses.
 
-- `newErrorRestResponse(Exception exc): libak_RestFramework.IRestResponse`: Creates a new error response based on the given exception.
+- `newErrorRestResponse(Exception exc): libak_IRestResponse`: Creates a new error response based on the given exception.
 
-### libak_RestFramework.IRestLogger
+### libak_IRestLogger
 
-The `libak_RestFramework.IRestLogger` interface defines methods for logging REST-related information.
+The `libak_IRestLogger` interface defines methods for logging REST-related information.
 
 - `addErrorDetails(Exception exc): void`: Adds error details to the logger.
 - `createLog(): void`: Creates a log.
@@ -172,7 +172,7 @@ Processes the incoming REST request by handling different HTTP methods and manag
 
 This method is the entry point for processing incoming REST requests. It dynamically dispatches the request to the appropriate handler based on the HTTP method (GET, POST, PUT, PATCH, DELETE). If an unsupported HTTP method is received, it throws a `libak_RestFramework.MethodNotAllowedException`.
 
-- Returns: An instance of `libak_RestFramework.IRestResponse` representing the response to the REST request.
+- Returns: An instance of `libak_IRestResponse` representing the response to the REST request.
 - Throws: `libak_RestFramework.MethodNotAllowedException` - If the incoming HTTP method is not supported for this resource.
 
 #### `useUriTemplate(String uriTemplate)`
@@ -191,20 +191,20 @@ Sets the REST request for this `libak_RestProcessor`. The REST request contains 
   - `request` (RestRequest): The `RestRequest` object representing the incoming HTTP request.
 - Returns: The current `libak_RestProcessor` instance with the specified REST request set.
 
-#### `useErrorResponseFactory(libak_RestFramework.IErrorResponseFactory errorResponseFactory)`
+#### `useErrorResponseFactory(libak_IErrorResponseFactory errorResponseFactory)`
 
 Sets the error response factory for this `libak_RestProcessor`.
 
 - Parameters:
-  - `errorResponseFactory` (libak_RestFramework.IErrorResponseFactory): The error response factory to use.
+  - `errorResponseFactory` (libak_IErrorResponseFactory): The error response factory to use.
 - Returns: The current `libak_RestProcessor` instance.
 
-#### `useRestLogger(libak_RestFramework.IRestLogger restLogger)`
+#### `useRestLogger(libak_IRestLogger restLogger)`
 
 Sets the REST logger for this `libak_RestProcessor`.
 
 - Parameters:
-  - `restLogger` (libak_RestFramework.IRestLogger): The REST logger to use.
+  - `restLogger` (libak_IRestLogger): The REST logger to use.
 - Returns: The current `libak_RestProcessor` instance.
 
 ### Virtual Methods
@@ -215,31 +215,31 @@ The `libak_RestProcessor` class includes a set of virtual methods for handling s
 
 Handles the HTTP GET method for processing REST requests.
 
-- Returns: An instance of `libak_RestFramework.IRestResponse` representing the response to the GET request.
+- Returns: An instance of `libak_IRestResponse` representing the response to the GET request.
 
 #### `handlePost()`
 
 Handles the HTTP POST method for processing REST requests.
 
-- Returns: An instance of `libak_RestFramework.IRestResponse` representing the response to the POST request.
+- Returns: An instance of `libak_IRestResponse` representing the response to the POST request.
 
 #### `handlePut()`
 
 Handles the HTTP PUT method for processing REST requests.
 
-- Returns: An instance of `libak_RestFramework.IRestResponse` representing the response to the PUT request.
+- Returns: An instance of `libak_IRestResponse` representing the response to the PUT request.
 
 #### `handlePatch()`
 
 Handles the HTTP PATCH method for processing REST requests.
 
-- Returns: An instance of `libak_RestFramework.IRestResponse` representing the response to the PATCH request.
+- Returns: An instance of `libak_IRestResponse` representing the response to the PATCH request.
 
 #### `handleDelete()`
 
 Handles the HTTP DELETE method for processing REST requests.
 
-- Returns: An instance of `libak_RestFramework.IRestResponse` representing the response to the DELETE request.
+- Returns: An instance of `libak_IRestResponse` representing the response to the DELETE request.
 
 ### Protected Methods
 
@@ -300,14 +300,14 @@ Sets the routes for the `libak_RestRouter`. Implement this method to define the 
 
 ### Public methods
 
-#### `newRestProcessor(RestRequest request, libak_RestFramework.IErrorResponseFactory errorResponseFactory, libak_RestFramework.IRestLogger restLogger)`
+#### `newRestProcessor(RestRequest request, libak_IErrorResponseFactory errorResponseFactory, libak_IRestLogger restLogger)`
 
 Creates a new `libak_RestProcessor` instance for handling the incoming REST request with a custom error response factory and REST logger. This method dynamically selects the appropriate `libak_RestProcessor` based on the requested URI.
 
 - Parameters:
   - `request` (RestRequest): The `RestRequest` object representing the incoming HTTP request.
-  - `errorResponseFactory` (libak_RestFramework.IErrorResponseFactory): The custom error response factory to use for generating error responses.
-  - `restLogger` (libak_RestFramework.IRestLogger): The custom REST logger to use for logging REST-related information.
+  - `errorResponseFactory` (libak_IErrorResponseFactory): The custom error response factory to use for generating error responses.
+  - `restLogger` (libak_IRestLogger): The custom REST logger to use for logging REST-related information.
 - Returns: A new `libak_RestProcessor` instance configured to handle the specified REST request with custom error handling and logging.
 - Throws: `libak_RestFramework.InvalidUriException` - If the requested URI does not match any defined routes.
 
@@ -497,5 +497,4 @@ Sends the error response with the configured status code, summary, and details. 
 ## `Custom Exceptions`
 
 - `libak_RestFramework.InvalidUriException`: Exception class for invalid URIs.
-- `libak_RestFramework.NotFoundException`: Exception class for not found resources.
 - `libak_RestFramework.MethodNotAllowedException`: Exception class for unsupported HTTP methods.
