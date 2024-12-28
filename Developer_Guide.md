@@ -169,7 +169,7 @@ Here is a few things you have to consider about it:
 	- PATCH -> handlePatch()
 	- DELETE -> handleDelete()
 	
-	All these methods have to return the `libak_RestFramework.IRestResponse`.
+	All these methods have to return the `libak_IRestResponse`.
 - the `libak_RestProcessor` provides set of methods to easily get access to URI params, query params, and headers:
 	- `getUriParam(String paramName)` - remember about the colon character `:` we saw in the routes? It allows us to use those "variable" names to take the proper URI param like this: `this.getUriParam('customer_sf_id')`
 	- `getQueryParam(String paramName)`
@@ -180,7 +180,7 @@ Now we know good enough at this stage to prepare our Rest Processors
 ```java
 // Here you can see there is no pagination implementation. We will add it later to show the versioning functionality.
 public class CustomersProcessorV1 extends libak_RestProcessor {
-	protected override libak_RestFramework.IRestResponse handleGet() {
+	protected override libak_IRestResponse handleGet() {
 		List<Account> accounts = [
 			SELECT Id, Name, Phone, BillingStreet, BillingCity, BillingState, BillingPostalCode
 			FROM Account
@@ -194,7 +194,7 @@ public class CustomersProcessorV1 extends libak_RestProcessor {
 		}
 	}
 
-	protected override libak_RestFramework.IRestResponse handlePost() {
+	protected override libak_IRestResponse handlePost() {
 		Account newAccount = (Account)JSON.deserialize(this.request.requestBody.toString(), Account.class);
 		insert newAccount;
 
@@ -205,7 +205,7 @@ public class CustomersProcessorV1 extends libak_RestProcessor {
 
 ```java
 public class CustomerProcessorV1 extends libak_RestProcessor {
-	protected override libak_RestFramework.IRestResponse handleGet() {
+	protected override libak_IRestResponse handleGet() {
 		List<Account> accounts = [
 			SELECT Id, Name, Phone, BillingStreet, BillingCity, BillingState, BillingPostalCode
 			FROM Account
@@ -219,7 +219,7 @@ public class CustomerProcessorV1 extends libak_RestProcessor {
 		}
 	}
 
-	protected override libak_RestFramework.IRestResponse handlePut() {
+	protected override libak_IRestResponse handlePut() {
 		String accountId = this.getUriParam('customer_sf_id');
 		List<Account> existingAccounts = [SELECT Id FROM Account WHERE Id = :accountId];
 
@@ -233,7 +233,7 @@ public class CustomerProcessorV1 extends libak_RestProcessor {
 		return new libak_JsonResponse(updatedAccount);
 	}
 
-	protected override libak_RestFramework.IRestResponse handleDelete() {
+	protected override libak_IRestResponse handleDelete() {
 		String accountId = this.getUriParam('customer_sf_id');
 		List<Account> existingAccounts = [SELECT Id FROM Account WHERE Id = :accountId];
 
@@ -295,7 +295,7 @@ global with sharing class CustomerWebServiceDemo {
 	}
 
 	public class CustomersProcessorV1 extends libak_RestProcessor {
-		protected override libak_RestFramework.IRestResponse handleGet() {
+		protected override libak_IRestResponse handleGet() {
 			List<Account> accounts = [
 				SELECT Id, Name, Phone, BillingStreet, BillingCity, BillingState, BillingPostalCode
 				FROM Account
@@ -309,7 +309,7 @@ global with sharing class CustomerWebServiceDemo {
 			}
 		}
 
-		protected override libak_RestFramework.IRestResponse handlePost() {
+		protected override libak_IRestResponse handlePost() {
 			Account newAccount = (Account)JSON.deserialize(this.request.requestBody.toString(), Account.class);
 			insert newAccount;
 
@@ -318,7 +318,7 @@ global with sharing class CustomerWebServiceDemo {
 	}
 
 	public class CustomerProcessorV1 extends libak_RestProcessor {
-		protected override libak_RestFramework.IRestResponse handleGet() {
+		protected override libak_IRestResponse handleGet() {
 			List<Account> accounts = [
 				SELECT Id, Name, Phone, BillingStreet, BillingCity, BillingState, BillingPostalCode
 				FROM Account
@@ -332,7 +332,7 @@ global with sharing class CustomerWebServiceDemo {
 			}
 		}
 
-		protected override libak_RestFramework.IRestResponse handlePut() {
+		protected override libak_IRestResponse handlePut() {
 			String accountId = this.getUriParam('customer_sf_id');
 			List<Account> existingAccounts = [SELECT Id FROM Account WHERE Id = :accountId];
 
@@ -346,7 +346,7 @@ global with sharing class CustomerWebServiceDemo {
 			return new libak_JsonResponse(updatedAccount);
 		}
 
-		protected override libak_RestFramework.IRestResponse handleDelete() {
+		protected override libak_IRestResponse handleDelete() {
 			String accountId = this.getUriParam('customer_sf_id');
 			List<Account> existingAccounts = [SELECT Id FROM Account WHERE Id = :accountId];
 
