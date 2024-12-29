@@ -469,6 +469,14 @@ Constructs a new `libak_ErrorResponse` with the specified status code, summary, 
   - `summary` (String): A summary message describing the error.
   - `details` (String): Additional details about the error.
 
+#### `libak_ErrorResponse(Integer statusCode, String summary)`
+
+Constructs a new `libak_ErrorResponse` with the specified status code, summary.
+
+- Parameters:
+  - `statusCode` (Integer): The HTTP status code for the error response.
+  - `summary` (String): A summary message describing the error.
+
 #### `libak_ErrorResponse(Integer status, String summary, Exception exc)`
 
 Constructs a new `libak_ErrorResponse` with the specified status code and summary, based on an exception.

@@ -21,6 +21,16 @@ public class libak_ErrorResponse implements libak_IRestResponse {
 		this.summary = summary;
 		this.details = details;
 	}
+	
+	/**
+	 * Constructs a new `libak_ErrorResponse` with the specified status code, summary, and details.
+	 *
+	 * @param statusCode The HTTP status code for the error response.
+	 * @param summary    A summary message describing the error.
+	 */
+	public libak_ErrorResponse(Integer statusCode, String summary) {
+		this(statusCode, summary, summary);
+	}
 
 	/**
 	 * Constructs a new `libak_ErrorResponse` with the specified status code and summary,
@@ -30,8 +40,8 @@ public class libak_ErrorResponse implements libak_IRestResponse {
 	 * @param summary A summary message describing the error.
 	 * @param exc     The exception from which to derive error details.
 	 */
-	public libak_ErrorResponse(Integer status, String summary, Exception exc) {
-		this(status, summary, exc?.getMessage());
+	public libak_ErrorResponse(Integer statusCode, String summary, Exception exc) {
+		this(statusCode, summary, exc?.getMessage());
 	}
 
 	/**
@@ -41,8 +51,8 @@ public class libak_ErrorResponse implements libak_IRestResponse {
 	 * @param status The HTTP status code for the error response.
 	 * @param exc    The exception from which to derive error details.
 	 */
-	public libak_ErrorResponse(Integer status, Exception exc) {
-		this(status, exc?.getMessage(), exc);
+	public libak_ErrorResponse(Integer statusCode, Exception exc) {
+		this(statusCode, exc?.getMessage(), exc?.getMessage());
 	}
 
 	/**
