@@ -188,7 +188,7 @@ public class CustomersProcessorV1 extends libak_RestProcessor {
 		];
 
 		if (accounts.isEmpty()) {
-			return new libak_ErrorResponse(404, 'Accounts are not found', '');
+			return new libak_ErrorResponse(404, 'Accounts are not found');
 		} else {
 			return new libak_JsonResponse(accounts);
 		}
@@ -213,7 +213,7 @@ public class CustomerProcessorV1 extends libak_RestProcessor {
 		];
 
 		if (accounts.isEmpty()) {
-			return new libak_ErrorResponse(404, 'Accounts are not found', '');
+			return new libak_ErrorResponse(404, 'Account is not found');
 		} else {
 			return new libak_JsonResponse(accounts.get(0));
 		}
@@ -224,7 +224,7 @@ public class CustomerProcessorV1 extends libak_RestProcessor {
 		List<Account> existingAccounts = [SELECT Id FROM Account WHERE Id = :accountId];
 
 		if (existingAccounts.isEmpty()) {
-			return new libak_ErrorResponse(404, 'Account are not found', '');
+			return new libak_ErrorResponse(404, 'Account is not found');
 		}
 
 		Account updatedAccount = (Account)JSON.deserialize(this.request.requestBody.toString(), Account.class);
@@ -238,7 +238,7 @@ public class CustomerProcessorV1 extends libak_RestProcessor {
 		List<Account> existingAccounts = [SELECT Id FROM Account WHERE Id = :accountId];
 
 		if (existingAccounts.isEmpty()) {
-			return new libak_ErrorResponse(404, 'Account are not found', '');
+			return new libak_ErrorResponse(404, 'Account is not found');
 		}
 
 		delete existingAccounts.get(0);
@@ -303,7 +303,7 @@ global with sharing class CustomerWebServiceDemo {
 			];
 
 			if (accounts.isEmpty()) {
-				return new libak_ErrorResponse(404, 'Accounts are not found', '');
+				return new libak_ErrorResponse(404, 'Accounts are not found');
 			} else {
 				return new libak_JsonResponse(accounts);
 			}
@@ -326,7 +326,7 @@ global with sharing class CustomerWebServiceDemo {
 			];
 
 			if (accounts.isEmpty()) {
-				return new libak_ErrorResponse(404, 'Accounts are not found', '');
+				return new libak_ErrorResponse(404, 'Account is not found');
 			} else {
 				return new libak_JsonResponse(accounts.get(0));
 			}
@@ -337,7 +337,7 @@ global with sharing class CustomerWebServiceDemo {
 			List<Account> existingAccounts = [SELECT Id FROM Account WHERE Id = :accountId];
 
 			if (existingAccounts.isEmpty()) {
-				return new libak_ErrorResponse(404, 'Account are not found', '');
+				return new libak_ErrorResponse(404, 'Account is not found');
 			}
 
 			Account updatedAccount = (Account)JSON.deserialize(this.request.requestBody.toString(), Account.class);
@@ -351,11 +351,11 @@ global with sharing class CustomerWebServiceDemo {
 			List<Account> existingAccounts = [SELECT Id FROM Account WHERE Id = :accountId];
 
 			if (existingAccounts.isEmpty()) {
-				return new libak_ErrorResponse(404, 'Account are not found', '');
+				return new libak_ErrorResponse(404, 'Account is not found');
 			}
 
 			delete existingAccounts.get(0);
-			return new libak_SuccessResponse('Account deleted successfully');
+			return new libak_SuccessResponse('Account is deleted successfully');
 		}
 	}
 }
