@@ -2,19 +2,19 @@
 global with sharing class CustomerWebServiceDemo {
 	@HttpGet
 	global static void doGet() {
-		libak_RestFramework.handleRequest(CustomerRestRouter.class);
+		libak_RestFramework.handleRequest(CustomerRestRouter.class, RestLogger.class);
 	}
 	@HttpPost
 	global static void doPost() {
-		libak_RestFramework.handleRequest(CustomerRestRouter.class);
+		libak_RestFramework.handleRequest(CustomerRestRouter.class, RestLogger.class);
 	}
 	@HttpPut
 	global static void doPut() {
-		libak_RestFramework.handleRequest(CustomerRestRouter.class);
+		libak_RestFramework.handleRequest(CustomerRestRouter.class, RestLogger.class);
 	}
 	@HttpDelete
 	global static void doDelete() {
-		libak_RestFramework.handleRequest(CustomerRestRouter.class);
+		libak_RestFramework.handleRequest(CustomerRestRouter.class, RestLogger.class);
 	}
 
 	public class CustomerRestRouter extends libak_RestRouter {

@@ -364,3 +364,89 @@ global with sharing class CustomerWebServiceDemo {
 > **_NOTE:_** In this example We've put the rest processors as a subclasses in owr web service just to simplify reading the code but feel free to keep them as independent classes.
 
 # Advanced Topics
+
+## Logging REST Requests with libak_RestFramework
+
+By default, the REST Framework does not log any requests. However, logging can be enabled with a few simple steps, allowing you to capture detailed information about each REST request and its lifecycle. This guide outlines how to implement logging using the framework's extensibility.
+
+---
+
+### Enabling Logging
+To enable logging, follow these steps:
+
+### 1. Implement the `libak_IRestLogger` Interface
+The `libak_IRestLogger` interface defines three methods that you must implement to customize logging behavior.
+
+#### Methods Overview
+- **`void initLog(RestRequest request)`**  
+  Used for initializing log entries with details about the incoming request.
+- **`void addErrorDetails(Exception exc)`**  
+  Captures and adds error information to the log.
+- **`void createLog()`**  
+  Finalizes and persists the log entry (e.g., inserts a database record or writes to an external system).
+
+### 2. Inject Logging Dependency
+Pass your logger class when invoking `libak_RestFramework.handleRequest`.
+
+---
+
+### Step 1: Create a Logger Class
+Define a new class implementing the `libak_IRestLogger` interface.
+
+```java
+public with sharing class RestLogger implements libak_IRestLogger {
+    public void initLog(RestRequest request) {
+        // Initialize a log entry with details from the incoming REST request.
+    }
+
+    public void addErrorDetails(Exception exc) {
+        // Add error-specific details to the log entry.
+    }
+
+    public void createLog() {
+        // Finalize and save the log entry.
+    }
+}
+```
+
+---
+
+### Step 2: Update the HTTP Methods
+Modify your REST Web Service class to enable logging. Pass your custom logger class as a dependency in the `handleRequest` method.
+
+```java
+@HttpGet
+global static void doGet() {
+    libak_RestFramework.handleRequest(CustomerRestRouter.class, RestLogger.class);
+}
+
+@HttpPost
+global static void doPost() {
+    libak_RestFramework.handleRequest(CustomerRestRouter.class, RestLogger.class);
+}
+
+@HttpPut
+global static void doPut() {
+    libak_RestFramework.handleRequest(CustomerRestRouter.class, RestLogger.class);
+}
+
+@HttpDelete
+global static void doDelete() {
+    libak_RestFramework.handleRequest(CustomerRestRouter.class, RestLogger.class);
+}
+```
+
+---
+
+### How It Works
+After completing these steps, the REST Framework will invoke your `RestLogger` implementation for every incoming request. The logger will:
+- Record request details during the `initLog` method.
+- Append error information in the event of an exception via the `addErrorDetails` method.
+- Save the log (e.g., as a Salesforce record) when the `createLog` method is called.
+
+This flexible approach lets you tailor logging to meet your organization’s auditing, debugging, or monitoring requirements.
+
+---
+
+### Conclusion
+By implementing the `libak_IRestLogger` interface and injecting your logger class into the request-handling pipeline, you gain full control over how REST requests are logged. This setup ensures your system captures the information you need for effective troubleshooting and operational visibility.
