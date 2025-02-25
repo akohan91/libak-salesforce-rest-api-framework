@@ -54,6 +54,6 @@ public abstract class libak_RestRouter {
 			.replaceAll('\\*', '\\.+')
 			.replaceAll('\\:(.+?)/', '\\.+/')
 			.replaceAll('\\:(.+?)$', '\\.+');
-		return Pattern.matches('(?i)' + routeTemplateRegEx, requestURI);
+		return Pattern.matches('(?i)' + routeTemplateRegEx, requestURI.replaceAll('(\\/+)$', ''));
 	}
 }
