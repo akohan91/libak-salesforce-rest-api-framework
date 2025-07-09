@@ -50,7 +50,7 @@ public with sharing class libak_TestRestRouter {
 		Test.startTest();
 
 		try {
-			libak_RestProcessor processor = router.newRestProcessor(
+			router.newRestProcessor(
 				request,
 				new libak_TestErrorResponseFactory(),
 				new TestRestLogger()
@@ -80,6 +80,8 @@ public with sharing class libak_TestRestRouter {
 		}
 	}
 
+	
+	@SuppressWarnings('PMD.EmptyStatementBlock')
 	private class TestRestLogger implements libak_IRestLogger {
 		public void initLog(RestRequest request) {}
 		public void addErrorDetails(Exception exc) {}
