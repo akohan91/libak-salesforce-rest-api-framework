@@ -1,30 +1,42 @@
 @IsTest
 public with sharing class libak_TestRestProcessor {
+	// Assertions are performed in the checkMethodNotAllowedResponse helper method
+	@SuppressWarnings('PMD.ApexUnitTestClassShouldHaveAsserts')
 	@IsTest
 	static void testProcessGet(){
 		checkMethodNotAllowedResponse('GET');
 	}
 
+	// Assertions are performed in the checkMethodNotAllowedResponse helper method
+	@SuppressWarnings('PMD.ApexUnitTestClassShouldHaveAsserts')
 	@IsTest
 	static void testProcessPost(){
 		checkMethodNotAllowedResponse('POST');
 	}
 
+	// Assertions are performed in the checkMethodNotAllowedResponse helper method
+	@SuppressWarnings('PMD.ApexUnitTestClassShouldHaveAsserts')
 	@IsTest
 	static void testProcessPut(){
 		checkMethodNotAllowedResponse('PUT');
 	}
 
+	// Assertions are performed in the checkMethodNotAllowedResponse helper method
+	@SuppressWarnings('PMD.ApexUnitTestClassShouldHaveAsserts')
 	@IsTest
 	static void testProcessPatch(){
 		checkMethodNotAllowedResponse('PATCH');
 	}
 
+	// Assertions are performed in the checkMethodNotAllowedResponse helper method
+	@SuppressWarnings('PMD.ApexUnitTestClassShouldHaveAsserts')
 	@IsTest
 	static void testProcessDelete(){
 		checkMethodNotAllowedResponse('DELETE');
 	}
 
+	// Assertions are performed in the checkMethodNotAllowedResponse helper method
+	@SuppressWarnings('PMD.ApexUnitTestClassShouldHaveAsserts')
 	@IsTest
 	static void testProcessOther(){
 		checkMethodNotAllowedResponse('OPTIONS');
