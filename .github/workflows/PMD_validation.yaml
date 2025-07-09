@@ -1,11 +1,10 @@
-name: PMD Verification
+name: Apex PMD Verification
 
 permissions:
   contents: read
   pull-requests: write
 
 on:
-  workflow_dispatch:
   pull_request:
     branches:
       - develop
