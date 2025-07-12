@@ -57,9 +57,12 @@ public class libak_RestFramework {
 			errorResponseFactory = (libak_IErrorResponseFactory)errorResponseFactoryType?.newInstance();
 			restLogger = (libak_IRestLogger)loggerType?.newInstance();
 			restLogger?.initLog(RestContext.request);
-			libak_RestRouter router = ((libak_RestRouter)routerType.newInstance()).setRoutes();
+			libak_RestRouter router = ((libak_RestRouter)routerType.newInstance())
+				.setRoutes()
+				.setRouteToErrorResponseFactoryType()
+				.setRouteToLoggerType();
 			libak_RestProcessor processor = router
-			.newRestProcessor(RestContext.request, errorResponseFactory, restLogger);
+				.newRestProcessor(RestContext.request, errorResponseFactory, restLogger);
 			response = processor.process();
 		} catch (Exception exc) {
 			response = errorResponseFactory.newErrorRestResponse(exc);

@@ -37,6 +37,9 @@
 - [`libak_RestRouter class`](#restrouter-class)
   - [Abstract methods](#abstract-methods)
     - [`setRoutes()`](#setroutes)
+  - [Virtual methods](#virtual-methods)
+    - [`setRouteToErrorResponseFactoryType()`](#setroutetoerrorresponsefactorytype)
+    - [`setRouteToLoggerType()`](#setroutetologgertype)
   - [Public methods](#public-methods-1)
     - [`newRestProcessor(RestRequest request, libak_IErrorResponseFactory errorResponseFactory, libak_IRestLogger restLogger)`](#newrestprocessorrestrequest-request-restframeworkierrorresponsefactory-errorresponsefactory-restframeworkirestlogger-restlogger)
   - [Private Methods](#private-methods-1)
@@ -298,16 +301,32 @@ Sets the routes for the `libak_RestRouter`. Implement this method to define the 
 
 - Returns: The current `libak_RestRouter` instance.
 
+### Virtual methods
+
+#### `setRouteToErrorResponseFactoryType()`
+
+Sets the route-specific error response factory types for the `libak_RestRouter`. Override this method to define custom error response factories for specific routes. Implementation should set values for the `routeToErrorResponseFactoryType` property as <route>:<libak_IErrorResponseFactory type> mappings.
+
+- Returns: The current `libak_RestRouter` instance for method chaining.
+
+#### `setRouteToLoggerType()`
+
+Sets the route-specific logger types for the `libak_RestRouter`. Override this method to define custom loggers for specific routes. Implementation should set values for the `routeToLoggerType` property as <route>:<libak_IRestLogger type> mappings.
+
+- Returns: The current `libak_RestRouter` instance for method chaining.
+
 ### Public methods
 
 #### `newRestProcessor(RestRequest request, libak_IErrorResponseFactory errorResponseFactory, libak_IRestLogger restLogger)`
 
 Creates a new `libak_RestProcessor` instance for handling the incoming REST request with a custom error response factory and REST logger. This method dynamically selects the appropriate `libak_RestProcessor` based on the requested URI.
 
+If route-specific error response factories or loggers have been defined using `setRouteToErrorResponseFactoryType()` or `setRouteToLoggerType()`, those will be used instead of the default factories or loggers provided as parameters.
+
 - Parameters:
   - `request` (RestRequest): The `RestRequest` object representing the incoming HTTP request.
-  - `errorResponseFactory` (libak_IErrorResponseFactory): The custom error response factory to use for generating error responses.
-  - `restLogger` (libak_IRestLogger): The custom REST logger to use for logging REST-related information.
+  - `errorResponseFactory` (libak_IErrorResponseFactory): The default error response factory to use for generating error responses.
+  - `restLogger` (libak_IRestLogger): The default REST logger to use for logging REST-related information.
 - Returns: A new `libak_RestProcessor` instance configured to handle the specified REST request with custom error handling and logging.
 - Throws: `libak_RestFramework.InvalidUriException` - If the requested URI does not match any defined routes.
 
