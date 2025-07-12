@@ -5,6 +5,8 @@
  */
 public abstract class libak_RestRouter {
 	protected Map<String, Type> routeToRestProcessorType;
+	protected Map<String, Type> routeToErrorResponseFactoryType;
+	protected Map<String, Type> routeToLoggerType;
 
 	/**
 	 * Sets the routes for the `libak_RestRouter`.
@@ -14,6 +16,30 @@ public abstract class libak_RestRouter {
 	 * @return The current `libak_RestRouter` instance.
 	 */
 	abstract public libak_RestRouter setRoutes();
+	
+	/**
+	 * Sets the route-specific error response factory types for the `libak_RestRouter`.
+	 * Override this method to define custom error response factories for specific routes.
+	 * Implementation should set values for the `routeToErrorResponseFactoryType` property 
+	 * as <route>:<libak_IErrorResponseFactory type> mappings.
+	 *
+	 * @return The current `libak_RestRouter` instance for method chaining.
+	 */
+	virtual public libak_RestRouter setRouteToErrorResponseFactoryType() {
+		return this;
+	}
+
+	/**
+	 * Sets the route-specific logger types for the `libak_RestRouter`.
+	 * Override this method to define custom loggers for specific routes.
+	 * Implementation should set values for the `routeToLoggerType` property 
+	 * as <route>:<libak_IRestLogger type> mappings.
+	 *
+	 * @return The current `libak_RestRouter` instance for method chaining.
+	 */
+	virtual public libak_RestRouter setRouteToLoggerType() {
+		return this;
+	}
 
 	/**
 	 * Creates a new `libak_RestProcessor` instance for handling the incoming REST request with a custom error response factory
@@ -34,8 +60,17 @@ public abstract class libak_RestRouter {
 				libak_RestProcessor restProcessorItem = (libak_RestProcessor)routeToRestProcessorType.get(route).newInstance();
 				return restProcessorItem
 					.useRestRequest(request)
-					.useErrorResponseFactory(errorResponseFactory)
-					.useRestLogger(restLogger)
+					.useErrorResponseFactory(
+						this.routeToErrorResponseFactoryType?.get(route) == null
+						? errorResponseFactory
+						: (libak_IErrorResponseFactory)this.routeToErrorResponseFactoryType.get(route).newInstance()
+					)
+					.useRestLogger(
+						this.routeToLoggerType?.get(route) == null
+						? restLogger
+						: (libak_IRestLogger)this.routeToLoggerType.get(route).newInstance()
+						
+					)
 					.useUriTemplate(route);
 			}
 		}

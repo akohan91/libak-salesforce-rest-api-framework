@@ -8,7 +8,10 @@ public with sharing class libak_TestRestRouter {
 		RestRequest request = new RestRequest();
 		request.requestURI = '/testRestRouter/param_1';
 		RestContext.request = request;
-		libak_RestRouter router = new RestRouterInstance().setRoutes();
+		libak_RestRouter router = new RestRouterInstance()
+			.setRoutes()
+			.setRouteToErrorResponseFactoryType()
+			.setRouteToLoggerType();
 
 		Test.startTest();
 
@@ -41,11 +44,54 @@ public with sharing class libak_TestRestRouter {
 	}
 
 	@IsTest
+	static void testNewRestProcessorWithCustomLoggerAndErrorResponseFactorySetByRouter(){
+		RestRequest request = new RestRequest();
+		request.requestURI = '/testRestRouter/param_1';
+		RestContext.request = request;
+		libak_RestRouter router = new RestRouterWithCustomLoggerErrorFactoryInstance()
+			.setRoutes()
+			.setRouteToErrorResponseFactoryType()
+			.setRouteToLoggerType();
+
+		Test.startTest();
+
+		libak_RestProcessor processor = router.newRestProcessor(
+			request,
+			null,
+			null
+		);
+
+		Test.stopTest();
+
+		System.assertEquals(
+			request,
+			processor.request,
+			'Wrong "request" property of libak_RestProcessor instance.'
+		);
+		System.assertEquals(
+			URI_TEMPLATE,
+			processor.uriTemplate,
+			'Wrong "uriTemplate" property of libak_RestProcessor instance.'
+		);
+		System.assert(
+			processor.errorResponseFactory instanceOf libak_TestErrorResponseFactory,
+			'Wrong "errorResponseFactory" property of libak_RestProcessor instance.'
+		);
+		System.assert(
+			processor.restLogger instanceOf TestRestLogger,
+			'Wrong "errorResponseFactory" property of libak_RestProcessor instance.'
+		);
+	}
+
+	@IsTest
 	static void testNewRestProcessorInvalidUriException(){
 		RestRequest request = new RestRequest();
 		request.requestURI = '/invalidURI';
 		RestContext.request = request;
-		libak_RestRouter router = new RestRouterInstance().setRoutes();
+		libak_RestRouter router = new RestRouterInstance()
+			.setRoutes()
+			.setRouteToErrorResponseFactoryType()
+			.setRouteToLoggerType();
 
 		Test.startTest();
 
@@ -75,6 +121,29 @@ public with sharing class libak_TestRestRouter {
 		override public libak_RestRouter setRoutes() {
 			this.routeToRestProcessorType = new Map<String, Type>{
 				URI_TEMPLATE => libak_RestProcessor.class
+			};
+			return this;
+		}
+	}
+
+	private class RestRouterWithCustomLoggerErrorFactoryInstance extends libak_RestRouter {
+		override public libak_RestRouter setRoutes() {
+			this.routeToRestProcessorType = new Map<String, Type>{
+				URI_TEMPLATE => libak_RestProcessor.class
+			};
+			return this;
+		}
+
+		override public libak_RestRouter setRouteToErrorResponseFactoryType() {
+			this.routeToErrorResponseFactoryType = new Map<String, Type>{
+				URI_TEMPLATE => libak_TestErrorResponseFactory.class
+			};
+			return this;
+		}
+
+		override public libak_RestRouter setRouteToLoggerType() {
+			this.routeToLoggerType = new Map<String, Type>{
+				URI_TEMPLATE => TestRestLogger.class
 			};
 			return this;
 		}
