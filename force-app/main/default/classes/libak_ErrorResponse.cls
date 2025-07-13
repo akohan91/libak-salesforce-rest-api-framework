@@ -4,7 +4,7 @@
  */
 public class libak_ErrorResponse implements libak_IRestResponse {
 	@TestVisible
-	private Integer statusCode;
+	private transient Integer statusCode;
 	@TestVisible
 	private String summary;
 	private String details;

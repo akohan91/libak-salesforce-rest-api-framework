@@ -517,7 +517,7 @@ Constructs a new `libak_ErrorResponse` based on an exception. It sets the status
 
 #### `sendResponse()`
 
-Sends the error response with the configured status code, summary, and details. It sets the HTTP status code, response body (serialized error information in JSON format), and content type header in the RestContext's response object.
+Sends the error response with the configured summary, and details. It sets the HTTP status code, response body (serialized error information in JSON format but without statusCode property which is set only for the `RestContext.response.statusCode`), and content type header in the RestContext's response object.
 
 ---
 
