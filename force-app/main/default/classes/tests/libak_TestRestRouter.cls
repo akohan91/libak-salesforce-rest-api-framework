@@ -1,7 +1,7 @@
 @IsTest
 public with sharing class libak_TestRestRouter {
 
-	public static final String URI_TEMPLATE = '/testRestRouter/:uriParam';
+	public static final String URI_TEMPLATE = '/testRestRouter/{uriParam}';
 
 	@IsTest
 	static void testNewRestProcessorWithCustomLoggerAndErrorResponseFactory(){
