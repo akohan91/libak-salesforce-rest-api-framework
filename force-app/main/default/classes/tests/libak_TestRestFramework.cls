@@ -1,7 +1,7 @@
 @IsTest
 public with sharing class libak_TestRestFramework {
 
-	public static final String URI_TEMPLATE_WITH_PARAMS = '/testRestFramework/:uriParam';
+	public static final String URI_TEMPLATE_WITH_PARAMS = '/testRestFramework/{uriParam}';
 	public static final String URI_TEMPLATE_WITHOUT_PARAMS = '/testRestFramework';
 
 	@IsTest

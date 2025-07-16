@@ -57,8 +57,8 @@ public virtual class libak_RestProcessor {
 	 * Sets the URI template for this `libak_RestProcessor`. The URI template defines the expected structure
 	 * of the incoming URI, including any URI parameters.
 	 *
-	 * @param uriTemplate The URI template to set, in the format "/service/resource/:paramName".
-	 *                    The colon (:) is used to denote URI parameters, and the parameter name is
+	 * @param uriTemplate The URI template to set, in the format "/service/resource/{paramName}".
+	 *                    The {paramName} (string inside curly brackets) is used to denote URI parameters, and the parameter name is
 	 *                    used as the key for mapping URI values.
 	 * @return The current `libak_RestProcessor` instance with the URI template set.
 	 */
@@ -231,8 +231,8 @@ public virtual class libak_RestProcessor {
 		while (!templateItems.isEmpty()) {
 			String templateItem = templateItems.remove(0);
 			String uriItem = uriItems.remove(0);
-			if (templateItem.startsWith(':')) {
-				this.uriParamsMap.put(templateItem.substringAfter(':'), uriItem);
+			if (templateItem.startsWith('{')) {
+				this.uriParamsMap.put(templateItem.substringAfter('{').subStringBefore('}'), uriItem);
 			}
 		}
 	}

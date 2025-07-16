@@ -96,7 +96,7 @@ public with sharing class libak_TestRestProcessor {
 	private static libak_RestProcessor prepareDefaultRestProcessor(RestRequest request) {
 		return new libak_RestProcessor()
 			.useRestRequest(request)
-			.useUriTemplate('/testRestRouter/:uriParam')
+			.useUriTemplate('/testRestRouter/{uriParam}')
 			.useRestLogger(null)
 			.useErrorResponseFactory(new libak_ErrorResponseFactory());
 	}

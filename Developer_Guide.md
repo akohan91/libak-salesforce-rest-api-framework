@@ -80,7 +80,7 @@ Now is time to thing about routing.
 Analyzing our requirements we can define two routes:
 
 - **`v1/customers`**: the route will be used to retrieve list of our customers and create new.
-- **`v1/customers/:customer_id`**: the route will be used for manipulations on the dedicated customer. Here you can see the colon character `:` before the `customer_id`. This way we mark a named URI params that we can easily get access to in the Rest Processor (look at Step 4 for details).
+- **`v1/customers/{customer_id}`**: the route will be used for manipulations on the dedicated customer. Here you can see the `customer_id` wrapped in `{}` curly brackets. This way we mark a named URI params that we can easily get access to in the Rest Processor (look at Step 4 for details).
 
 To create a RestRouter we have to extend the `libak_RestRouter` class and override the `setRoutes()` method where we have to specify which Rest Processor we handle which route by setting the `routeToRestProcessorType` protected property as `<route>:<libak_RestProcessor type>`.
 
@@ -91,7 +91,7 @@ public class CustomerRestRouter extends libak_RestRouter {
 	override public libak_RestRouter setRoutes() {
 		this.routeToRestProcessorType = new Map<String, Type>{
 			'/v1/customers' => CustomersProcessorV1.class,
-			'/v1/customers/:customer_sf_id' => CustomerProcessorV1.class
+			'/v1/customers/{customer_sf_id}' => CustomerProcessorV1.class
 		};
 		return this;
 	}
@@ -107,7 +107,7 @@ public class CustomerRestRouter extends libak_RestRouter {
 	override public libak_RestRouter setRoutes() {
 		this.routeToRestProcessorType = new Map<String, Type>{
 			'/v1/customers' => CustomersProcessorV1.class,
-			'/v1/customers/:customer_sf_id' => CustomersProcessorV1.class
+			'/v1/customers/{customer_sf_id}' => CustomersProcessorV1.class
 		};
 		return this;
 	}
@@ -142,7 +142,7 @@ global with sharing class CustomerWebServiceDemo {
 		override public libak_RestRouter setRoutes() {
 			this.routeToRestProcessorType = new Map<String, Type>{
 				'/v1/customers' => CustomersProcessorV1.class,
-				'/v1/customers/:customer_sf_id' => CustomerProcessorV1.class
+				'/v1/customers/{customer_sf_id}' => CustomerProcessorV1.class
 			};
 			return this;
 		}
@@ -158,7 +158,7 @@ Now it's time to implement our REST Processors.
 
 As you remember we agreed to have two of them:
 - `CustomersProcessorV1` for `/v1/customers`
-- `CustomerProcessorV1` for `/v1/customers/:customer_sf_id`
+- `CustomerProcessorV1` for `/v1/customers/{customer_sf_id}`
 
 Here is a few things you have to consider about it:
 - Our rest processors have to `extend` the `libak_RestProcessor`
@@ -171,7 +171,7 @@ Here is a few things you have to consider about it:
 	
 	All these methods have to return the `libak_IRestResponse`.
 - the `libak_RestProcessor` provides set of methods to easily get access to URI params, query params, and headers:
-	- `getUriParam(String paramName)` - remember about the colon character `:` we saw in the routes? It allows us to use those "variable" names to take the proper URI param like this: `this.getUriParam('customer_sf_id')`
+	- `getUriParam(String paramName)` - remember about the curly brackets characters `{paramName}` we saw in the routes? It allows us to use those "variable" names to take the proper URI param like this: `this.getUriParam('customer_sf_id')`
 	- `getQueryParam(String paramName)`
 	- `getHeader(String headerName)`
 
@@ -288,7 +288,7 @@ global with sharing class CustomerWebServiceDemo {
 		override public libak_RestRouter setRoutes() {
 			this.routeToRestProcessorType = new Map<String, Type>{
 				'/v1/customers' => CustomersProcessorV1.class,
-				'/v1/customers/:customer_sf_id' => CustomerProcessorV1.class
+				'/v1/customers/{customer_sf_id}' => CustomerProcessorV1.class
 			};
 			return this;
 		}

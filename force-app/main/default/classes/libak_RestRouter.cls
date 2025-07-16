@@ -87,8 +87,8 @@ public abstract class libak_RestRouter {
 	private Boolean isRouteExists(String route, String requestURI) {
 		String routeTemplateRegEx = route
 			.replaceAll('\\*', '\\.+')
-			.replaceAll('\\:(.+?)/', '\\.+/')
-			.replaceAll('\\:(.+?)$', '\\.+');
+			.replaceAll('\\{(.+?)/', '\\.+/')
+			.replaceAll('\\{(.+?)$', '\\.+');
 		return Pattern.matches('(?i)' + routeTemplateRegEx, requestURI.replaceAll('(\\/+)$', ''));
 	}
 }
