@@ -21,7 +21,7 @@ global with sharing class CustomerWebServiceDemo {
 		override public libak_RestRouter setRoutes() {
 			this.routeToRestProcessorType = new Map<String, Type>{
 				'/v1/customers' => CustomersProcessorV1.class,
-				'/v1/customers/:customer_sf_id' => CustomerProcessorV1.class
+				'/v1/customers/{customer_sf_id}' => CustomerProcessorV1.class
 			};
 			return this;
 		}
