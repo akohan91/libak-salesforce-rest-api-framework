@@ -14,10 +14,10 @@
     height="28px"
   >
 </a>
-<a href="https://www.linkedin.com/pulse/mastering-rest-framework-building-robust-restful-web-apex-andrei-wefqe">
+<a href="https://www.linkedin.com/in/akohan">
   <img
     alt="akohan91 | LinkedIn"
-    src="https://cdn.simpleicons.org/linkedin"
+    src="https://content.linkedin.com/content/dam/me/business/en-us/amp/xbu/linkedin-revised-brand-guidelines/linkedin-logo/fg/brandg-linkedinlogo-hero-logo-dsk-v01.png.original.png"
     height="28px"
   >
 </a>
