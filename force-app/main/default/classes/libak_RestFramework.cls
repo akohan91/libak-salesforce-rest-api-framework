@@ -4,25 +4,6 @@
  * for processing RESTful requests.
  */
 public class libak_RestFramework {
-	// Constants for HTTP status codes
-	public static final Integer HTTP_CODE_OK = 200;
-	public static final Integer HTTP_CODE_BAD_REQUEST = 400;
-	public static final Integer HTTP_CODE_NOT_FOUND = 404;
-	public static final Integer HTTP_CODE_METHOD_NOT_ALLOWED = 405;
-	public static final Integer HTTP_CODE_INTERNAL_SERVER_ERROR = 500;
-
-	// Constants for HTTP headers
-	public static final String HEADER_NAME_CONTENT_TYPE = 'Content-Type';
-
-	// Constants for content types
-	public static final String CONTENT_TYPE_APPLICATION_JSON = 'application/json';
-	public static final String CONTENT_TYPE_APPLICATION_PDF = 'application/pdf';
-
-	// Constants for error messages
-	public static final String ERROR_MESSAGE_INTERNAL_SERVER_ERROR = 'Internal Server Error';
-	public static final String ERROR_MESSAGE_INVALID_URI = 'Invalid URI: ';
-	public static final String ERROR_MESSAGE_METHOD_NOT_ALLOWED = 'The {0} http method is not available for this resource: {1}.';
-
 	/**
 	 * Handles an incoming REST request using the specified router.
 	 *

@@ -1,5 +1,5 @@
 - [`Overview`](#overview)
-- [`Constants`](#constants)
+- [`libak_RestConstants class`](#restconstants-class)
   - [HTTP Status Codes](#http-status-codes)
   - [HTTP Headers](#http-headers)
   - [Content Types](#content-types)
@@ -82,30 +82,32 @@ The `libak_RestFramework` class provides a structured framework for building RES
 
 ![libak_RestFramework UML diagram](assets/RestFrameworkUML.png)
 
-## `Constants`
+## `libak_RestConstants class`
+
+The `libak_RestConstants` class contains all constant values used throughout the REST framework. This includes HTTP status codes, header names, content types, and error messages.
 
 ### HTTP Status Codes
 
-- `libak_RestFramework.HTTP_CODE_OK` (Integer): HTTP status code for a successful request (200).
-- `libak_RestFramework.HTTP_CODE_BAD_REQUEST` (Integer): HTTP status code for a bad request (400).
-- `libak_RestFramework.HTTP_CODE_NOT_FOUND` (Integer): HTTP status code for a not found resource (404).
-- `libak_RestFramework.HTTP_CODE_METHOD_NOT_ALLOWED` (Integer): HTTP status code for a method not allowed (405).
-- `libak_RestFramework.HTTP_CODE_INTERNAL_SERVER_ERROR` (Integer): HTTP status code for an internal server error (500).
+- `libak_RestConstants.HTTP_CODE_OK` (Integer): HTTP status code for a successful request (200).
+- `libak_RestConstants.HTTP_CODE_BAD_REQUEST` (Integer): HTTP status code for a bad request (400).
+- `libak_RestConstants.HTTP_CODE_NOT_FOUND` (Integer): HTTP status code for a not found resource (404).
+- `libak_RestConstants.HTTP_CODE_METHOD_NOT_ALLOWED` (Integer): HTTP status code for a method not allowed (405).
+- `libak_RestConstants.HTTP_CODE_INTERNAL_SERVER_ERROR` (Integer): HTTP status code for an internal server error (500).
 
 ### HTTP Headers
 
-- `libak_RestFramework.HEADER_NAME_CONTENT_TYPE` (String): The name of the HTTP header for specifying content type.
+- `libak_RestConstants.HEADER_NAME_CONTENT_TYPE` (String): The name of the HTTP header for specifying content type.
 
 ### Content Types
 
-- `libak_RestFramework.CONTENT_TYPE_APPLICATION_JSON` (String): Content type for JSON data.
-- `libak_RestFramework.CONTENT_TYPE_APPLICATION_PDF` (String): Content type for PDF data.
+- `libak_RestConstants.CONTENT_TYPE_APPLICATION_JSON` (String): Content type for JSON data.
+- `libak_RestConstants.CONTENT_TYPE_APPLICATION_PDF` (String): Content type for PDF data.
 
 ### Error Messages
 
-- `libak_RestFramework.ERROR_MESSAGE_INTERNAL_SERVER_ERROR` (String): Default error message for internal server errors.
-- `libak_RestFramework.ERROR_MESSAGE_INVALID_URI` (String): Error message for invalid URIs.
-- `libak_RestFramework.ERROR_MESSAGE_METHOD_NOT_ALLOWED` (String): Error message for unsupported HTTP methods.
+- `libak_RestConstants.ERROR_MESSAGE_INTERNAL_SERVER_ERROR` (String): Default error message for internal server errors.
+- `libak_RestConstants.ERROR_MESSAGE_INVALID_URI` (String): Error message for invalid URIs.
+- `libak_RestConstants.ERROR_MESSAGE_METHOD_NOT_ALLOWED` (String): Error message for unsupported HTTP methods.
 
 ## `Interfaces`
 

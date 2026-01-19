@@ -4,8 +4,8 @@
  */
 public class libak_ErrorResponseFactory implements libak_IErrorResponseFactory {
 	private Map<String, Integer> httpStatusByErrorType = new Map<String, Integer>{
-		libak_RestFramework.InvalidUriException.class.getName() => libak_RestFramework.HTTP_CODE_BAD_REQUEST,
-		libak_RestFramework.MethodNotAllowedException.class.getName() => libak_RestFramework.HTTP_CODE_METHOD_NOT_ALLOWED
+		libak_RestFramework.InvalidUriException.class.getName() => libak_RestConstants.HTTP_CODE_BAD_REQUEST,
+		libak_RestFramework.MethodNotAllowedException.class.getName() => libak_RestConstants.HTTP_CODE_METHOD_NOT_ALLOWED
 	};
 
 	/**
@@ -19,8 +19,8 @@ public class libak_ErrorResponseFactory implements libak_IErrorResponseFactory {
 		return statusCode != null
 			? new libak_ErrorResponse(statusCode, exc)
 			: new libak_ErrorResponse(
-				libak_RestFramework.HTTP_CODE_INTERNAL_SERVER_ERROR,
-				libak_RestFramework.ERROR_MESSAGE_INTERNAL_SERVER_ERROR,
+				libak_RestConstants.HTTP_CODE_INTERNAL_SERVER_ERROR,
+				libak_RestConstants.ERROR_MESSAGE_INTERNAL_SERVER_ERROR,
 				exc
 			);
 	}
