@@ -74,7 +74,7 @@ public abstract class libak_RestRouter {
 					.useUriTemplate(route);
 			}
 		}
-		throw new libak_RestFramework.InvalidUriException(libak_RestFramework.ERROR_MESSAGE_INVALID_URI + request.requestURI);
+		throw new libak_RestFramework.InvalidUriException(libak_RestConstants.ERROR_MESSAGE_INVALID_URI + request.requestURI);
 	}
 
 	/**

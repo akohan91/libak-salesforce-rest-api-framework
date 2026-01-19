@@ -104,7 +104,7 @@ public with sharing class libak_TestRestRouter {
 			throw new TestCustomException('Go in to catch block.');
 		} catch (Exception exc) {
 			System.assertEquals(
-				libak_RestFramework.ERROR_MESSAGE_INVALID_URI + request.requestURI,
+				libak_RestConstants.ERROR_MESSAGE_INVALID_URI + request.requestURI,
 				exc.getMessage(),
 				'Wrong exception message'
 			);

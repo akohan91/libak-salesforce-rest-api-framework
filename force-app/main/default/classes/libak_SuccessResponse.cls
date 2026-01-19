@@ -13,7 +13,7 @@ public virtual class libak_SuccessResponse implements libak_IRestResponse {
 	 * @param data The data to include in the response.
 	 */
 		public libak_SuccessResponse(String data) {
-		this(libak_RestFramework.HTTP_CODE_OK, Blob.valueOf(data));
+		this(libak_RestConstants.HTTP_CODE_OK, Blob.valueOf(data));
 	}
 
 	/**
@@ -22,7 +22,7 @@ public virtual class libak_SuccessResponse implements libak_IRestResponse {
 	 * @param data The data to include in the response.
 	 */
 	public libak_SuccessResponse(Blob data) {
-		this(libak_RestFramework.HTTP_CODE_OK, data);
+		this(libak_RestConstants.HTTP_CODE_OK, data);
 	}
 
 	/**

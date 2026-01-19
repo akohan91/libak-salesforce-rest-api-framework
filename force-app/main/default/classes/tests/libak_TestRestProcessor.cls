@@ -81,16 +81,16 @@ public with sharing class libak_TestRestProcessor {
 	static void testGetHeader(){
 		RestRequest request = new RestRequest();
 		request.requestURI = '/testRestRouter/uri_param';
-		request.addHeader(libak_RestFramework.HEADER_NAME_CONTENT_TYPE, libak_RestFramework.CONTENT_TYPE_APPLICATION_JSON);
+		request.addHeader(libak_RestConstants.HEADER_NAME_CONTENT_TYPE, libak_RestConstants.CONTENT_TYPE_APPLICATION_JSON);
 		libak_RestProcessor processor = prepareDefaultRestProcessor(request);
 
 		Test.startTest();
 
-		String header = processor.getHeader(libak_RestFramework.HEADER_NAME_CONTENT_TYPE);
+		String header = processor.getHeader(libak_RestConstants.HEADER_NAME_CONTENT_TYPE);
 
 		Test.stopTest();
 
-		System.assertEquals(libak_RestFramework.CONTENT_TYPE_APPLICATION_JSON, header, 'The header is wrong.');
+		System.assertEquals(libak_RestConstants.CONTENT_TYPE_APPLICATION_JSON, header, 'The header is wrong.');
 	}
 
 	private static libak_RestProcessor prepareDefaultRestProcessor(RestRequest request) {
@@ -116,16 +116,16 @@ public with sharing class libak_TestRestProcessor {
 		Test.stopTest();
 
 		System.assert(
-			RestContext.response.headers.containsKey(libak_RestFramework.HEADER_NAME_CONTENT_TYPE),
+			RestContext.response.headers.containsKey(libak_RestConstants.HEADER_NAME_CONTENT_TYPE),
 			'The response should have the "Content-Type" header.'
 		);
 		System.assertEquals(
-			libak_RestFramework.CONTENT_TYPE_APPLICATION_JSON,
-			RestContext.response.headers.get(libak_RestFramework.HEADER_NAME_CONTENT_TYPE),
+			libak_RestConstants.CONTENT_TYPE_APPLICATION_JSON,
+			RestContext.response.headers.get(libak_RestConstants.HEADER_NAME_CONTENT_TYPE),
 			'The "Content-Type" header should be "application/json"'
 		);
 		System.assertEquals(
-			libak_RestFramework.HTTP_CODE_METHOD_NOT_ALLOWED,
+			libak_RestConstants.HTTP_CODE_METHOD_NOT_ALLOWED,
 			RestContext.response.statusCode,
 			'The status code of response should be 405'
 		);
