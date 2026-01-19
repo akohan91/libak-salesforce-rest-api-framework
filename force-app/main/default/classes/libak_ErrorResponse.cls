@@ -63,6 +63,6 @@ public class libak_ErrorResponse implements libak_IRestResponse {
 	public void sendResponse() {
 		RestContext.response.statusCode = this.statusCode;
 		RestContext.response.responseBody = BLOB.valueOf(JSON.serialize(this));
-		RestContext.response.addHeader(libak_RestFramework.HEADER_NAME_CONTENT_TYPE, libak_RestFramework.CONTENT_TYPE_APPLICATION_JSON);
+		RestContext.response.addHeader(libak_RestConstants.HEADER_NAME_CONTENT_TYPE, libak_RestConstants.CONTENT_TYPE_APPLICATION_JSON);
 	}
 }

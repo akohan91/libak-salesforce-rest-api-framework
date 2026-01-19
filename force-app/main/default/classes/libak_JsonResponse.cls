@@ -11,7 +11,7 @@ public class libak_JsonResponse extends libak_SuccessResponse {
 	 */
 	public libak_JsonResponse(String data) {
 		super(data);
-		this.addHeader(libak_RestFramework.HEADER_NAME_CONTENT_TYPE, libak_RestFramework.CONTENT_TYPE_APPLICATION_JSON);
+		this.addHeader(libak_RestConstants.HEADER_NAME_CONTENT_TYPE, libak_RestConstants.CONTENT_TYPE_APPLICATION_JSON);
 	}
 
 	/**
@@ -21,7 +21,7 @@ public class libak_JsonResponse extends libak_SuccessResponse {
 	 */
 	public libak_JsonResponse(Object data) {
 		super(Blob.valueOf(JSON.serialize(data)));
-		this.addHeader(libak_RestFramework.HEADER_NAME_CONTENT_TYPE, libak_RestFramework.CONTENT_TYPE_APPLICATION_JSON);
+		this.addHeader(libak_RestConstants.HEADER_NAME_CONTENT_TYPE, libak_RestConstants.CONTENT_TYPE_APPLICATION_JSON);
 	}
 
 	/**
@@ -32,7 +32,7 @@ public class libak_JsonResponse extends libak_SuccessResponse {
 	 */
 	public libak_JsonResponse(Integer statusCode, String data) {
 		super(statusCode, data);
-		this.addHeader(libak_RestFramework.HEADER_NAME_CONTENT_TYPE, libak_RestFramework.CONTENT_TYPE_APPLICATION_JSON);
+		this.addHeader(libak_RestConstants.HEADER_NAME_CONTENT_TYPE, libak_RestConstants.CONTENT_TYPE_APPLICATION_JSON);
 	}
 
 	/**
@@ -43,6 +43,6 @@ public class libak_JsonResponse extends libak_SuccessResponse {
 	 */
 	public libak_JsonResponse(Integer statusCode, Object data) {
 		super(statusCode, Blob.valueOf(JSON.serialize(data)));
-		this.addHeader(libak_RestFramework.HEADER_NAME_CONTENT_TYPE, libak_RestFramework.CONTENT_TYPE_APPLICATION_JSON);
+		this.addHeader(libak_RestConstants.HEADER_NAME_CONTENT_TYPE, libak_RestConstants.CONTENT_TYPE_APPLICATION_JSON);
 	}
 }

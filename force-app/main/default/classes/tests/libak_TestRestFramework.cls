@@ -18,7 +18,7 @@ public with sharing class libak_TestRestFramework {
 		Test.stopTest();
 
 		System.assertEquals(
-			libak_RestFramework.HTTP_CODE_METHOD_NOT_ALLOWED,
+			libak_RestConstants.HTTP_CODE_METHOD_NOT_ALLOWED,
 			RestContext.response.statusCode,
 			'The status code of response should be 405'
 		);
@@ -38,7 +38,7 @@ public with sharing class libak_TestRestFramework {
 		Test.stopTest();
 
 		System.assertEquals(
-			libak_RestFramework.HTTP_CODE_METHOD_NOT_ALLOWED,
+			libak_RestConstants.HTTP_CODE_METHOD_NOT_ALLOWED,
 			RestContext.response.statusCode,
 			'The status code of response should be 405'
 		);
@@ -58,7 +58,7 @@ public with sharing class libak_TestRestFramework {
 		Test.stopTest();
 
 		System.assertEquals(
-			libak_RestFramework.HTTP_CODE_METHOD_NOT_ALLOWED,
+			libak_RestConstants.HTTP_CODE_METHOD_NOT_ALLOWED,
 			RestContext.response.statusCode,
 			'The status code of response should be 405'
 		);
@@ -78,7 +78,7 @@ public with sharing class libak_TestRestFramework {
 		Test.stopTest();
 
 		System.assertEquals(
-			libak_RestFramework.HTTP_CODE_INTERNAL_SERVER_ERROR,
+			libak_RestConstants.HTTP_CODE_INTERNAL_SERVER_ERROR,
 			RestContext.response.statusCode,
 			'The status code of response should be 500'
 		);
@@ -88,7 +88,7 @@ public with sharing class libak_TestRestFramework {
 			libak_ErrorResponse.class
 		);
 		System.assertEquals(
-			libak_RestFramework.ERROR_MESSAGE_INTERNAL_SERVER_ERROR,
+			libak_RestConstants.ERROR_MESSAGE_INTERNAL_SERVER_ERROR,
 			errorResponse.summary,
 			'The summary property of response is wrong.'
 		);

@@ -225,7 +225,7 @@ public virtual class libak_RestProcessor {
 		List<String> uriItems = this.request.requestURI.substringAfter('/').split('/');
 		List<String> templateItems = this.uriTemplate.substringAfter('/').split('/');
 		if (uriItems.size() != templateItems.size()) {
-			throw new libak_RestFramework.InvalidUriException(libak_RestFramework.ERROR_MESSAGE_INVALID_URI + this.request.requestURI);
+			throw new libak_RestFramework.InvalidUriException(libak_RestConstants.ERROR_MESSAGE_INVALID_URI + this.request.requestURI);
 		}
 		this.uriParamsMap = new Map<String, String>();
 		while (!templateItems.isEmpty()) {
@@ -246,7 +246,7 @@ public virtual class libak_RestProcessor {
 	private void throwMethodNotAllowedException() {
 		throw new libak_RestFramework.MethodNotAllowedException(
 			String.format(
-				libak_RestFramework.ERROR_MESSAGE_METHOD_NOT_ALLOWED,
+				libak_RestConstants.ERROR_MESSAGE_METHOD_NOT_ALLOWED,
 				new List<String>{this.request.httpMethod, this.request.requestURI}
 			)
 		);
